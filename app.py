@@ -15,6 +15,16 @@ st.markdown("Use this app to predict whether a tumor is **Malignant** or **Benig
 st.sidebar.header("🧪 Input Feature Options")
 input_mode = st.sidebar.radio("Select Input Mode:", ("Manual Input", "Use Example"))
 
+# Feature names from the breast cancer dataset
+feature_names = [
+    "Radius (mean)", "Texture (mean)", "Perimeter (mean)", "Area (mean)", "Smoothness (mean)",
+    "Compactness (mean)", "Concavity (mean)", "Concave points (mean)", "Symmetry (mean)", "Fractal dimension (mean)",
+    "Radius (SE)", "Texture (SE)", "Perimeter (SE)", "Area (SE)", "Smoothness (SE)",
+    "Compactness (SE)", "Concavity (SE)", "Concave points (SE)", "Symmetry (SE)", "Fractal dimension (SE)",
+    "Radius (worst)", "Texture (worst)", "Perimeter (worst)", "Area (worst)", "Smoothness (worst)",
+    "Compactness (worst)", "Concavity (worst)", "Concave points (worst)", "Symmetry (worst)", "Fractal dimension (worst)"
+]
+
 # Example values for breast cancer dataset (benign sample)
 example_values = [
     17.99, 10.38, 122.8, 1001.0, 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871,
@@ -25,10 +35,10 @@ example_values = [
 # Input collection
 features = []
 st.subheader("📥 Input Diagnostic Features")
-st.markdown("Enter all 30 diagnostic values used in the breast cancer prediction dataset:")
+st.markdown("Enter values for each feature:")
 
 for i in range(30):
-    label = f"Feature {i + 1}"
+    label = f"{i + 1}. {feature_names[i]}"
     if input_mode == "Manual Input":
         value = st.number_input(label, min_value=0.0, value=0.0, step=0.01)
     else:
@@ -52,3 +62,4 @@ if st.button("🧠 Predict"):
 # Footer
 st.markdown("---")
 st.markdown("Made with ❤️ using Streamlit | Dataset: Breast Cancer Wisconsin (Diagnostic)")
+st.markdown("**Designed by Ajay**")
